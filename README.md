@@ -1,5 +1,4 @@
 # esp32-realdash-ecu
-Dossie 2.0 - Chevette ESP32
 
  * A Fonte do Canal B (Omissão Documental): eu detalhei o Circuito A (Fio da Boia), mas disse apenas "repetir para o Circuito B", sem dizer de onde vinha o sinal B. Adicionada a instrução explícita de que o sinal B vem da alimentação do relógio original do painel.
  * O Limbo do Alternador (Zona Morta): Se a voltagem ficar presa entre 12.8V e 13.5V, o que a tela mostra? Vamos documentar a regra de histerese do firmware: "Manter o último estado válido até que um novo limiar seja cruzado".
