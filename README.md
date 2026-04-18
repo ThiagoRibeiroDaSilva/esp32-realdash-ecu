@@ -1,8 +1,6 @@
 # esp32-realdash-ecu
 Dossie 2.0 - Chevette ESP32
 
-🛠️ A LIGAÇÃO FINAL (V21.0 - The Software Bridge)
-Nós vamos acatar essas 5 regras de ouro agora, porque elas formam a ponte perfeita entre a placa que você vai soldar e o código C++ que vamos escrever a seguir:
  * A Fonte do Canal B (Omissão Documental): eu detalhei o Circuito A (Fio da Boia), mas disse apenas "repetir para o Circuito B", sem dizer de onde vinha o sinal B. Adicionada a instrução explícita de que o sinal B vem da alimentação do relógio original do painel.
  * O Limbo do Alternador (Zona Morta): Se a voltagem ficar presa entre 12.8V e 13.5V, o que a tela mostra? Vamos documentar a regra de histerese do firmware: "Manter o último estado válido até que um novo limiar seja cruzado".
  * A Matemática do Óleo (Risco de Firmware): Se o código dividir os números "brutos" do ADS1115 (onde o canal do óleo tem um tamanho de "degrau" diferente do canal de referência), a conta dá errado. Regra cravada: O C++ tem que converter os sinais para Volts antes de fazer qualquer divisão.
