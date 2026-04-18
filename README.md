@@ -32,37 +32,45 @@ Status: HARDWARE APROVADO P/ BANCADA E ROAD-TEST (ZERO FALHAS CRITICAS)
  * Ambiente: VETADA a instalacao no cofre. Uso exclusivo em cabine.
  * Filtro Boia (0.34Hz): O circuito de combustivel possui resposta intencionalmente lenta (~3s) para atuar como amortecedor mecanico contra oscilacoes do tanque em curvas.
  * A BATALHA NAVAL 39x59 (TOPOLOGIA FINAL DETALHADA)
+
 BAIRRO 1: Front-End 12V
  * +12V -> Fusivel 2A -> No FRONT.
  * TVS TP6KE22A: Catodo no No FRONT, Anodo no PGND. (Trilhas curtissimas).
  * Protecao Reversa: No FRONT -> Source IRF9540N. Drain -> No VBAT_PROT.
  * Gate IRF9540N: R 1M Ohm (Gate p/ Source) + R 100k (Gate p/ PGND). Zener 15V (Catodo no Source, Anodo no Gate).
  * VBAT_PROT: Eletrolitico 470uF/50V + Cap 1uF/50V + Cap 100nF/50V p/ PGND. (Alimenta LM2596).
+
 BAIRRO 2: A Distribuicao de Energia
  * 5V_D (Carga Pesada): Saida LM2596. Alimenta ESP32(Vin) e Backlight.
  * 5V_A (Analogico Limpo): Saida 5V_D -> R 10 Ohms -> No 5V_A. Cap 47uF + Cap 100nF p/ LGND/AGND. (Alimenta EXCLUSIVAMENTE Sensor de Oleo, ADS1115, Lado HV do BSS138, Pull-up do NTC e Divisores).
  * 3.3V_GPS (LDO): MCP1700 alimentado pelo 5V_D. (Obrigatorio: Cap 1uF IN p/ LGND, Cap 1uF OUT p/ LGND). Alimenta apenas o GPS.
  * 3.3V_ESP: Pino 3.3V nativo do DevKit. Alimenta: Lado LV do BSS138, Pull-ups Logicos e VDD do MCP6002.
+
 BAIRRO 3: Condicionamento de RPM (Captura por Flyback)
  * Entrada Negativa Bobina -> 4x Resistores 6.8k Ohms (Filme Metalico 0.5W, espacados contra arco) -> No RPM_IN.
  * Zener 5.1V do No RPM_IN para PGND.
  * No RPM_IN -> R 330 Ohms -> Pino 1 (Anodo) H11L1M. Pino 2 (Catodo) -> PGND.
  * 1N4148 em antiparalelo: Anodo no Pino 2, Catodo no Pino 1 (Apos o R 330).
  * Lado ESP: Pino 6(VCC) em 3.3V_ESP + Cap 100nF p/ LGND. Pino 5(GND) no LGND/AGND. Pino 4(VO) -> GPIO 4 + Pull-up 4.7k p/ 3.3V_ESP.
+
 BAIRRO 4: Analogicos de Bloco
  * A0 (Oleo): VCC no 5V_A. GND DEVE retornar via fio dedicado ao LGND/AGND. Sinal -> R 2.2k -> No A0_FILT. Diodo Alto (Anodo No, Catodo 5V_A). Diodo Baixo (Anodo LGND, Catodo No). Cap 100nF p/ LGND. No A0_FILT -> Canal A0.
  * A1 (Agua NTC): 5V_A -> R 2.2k (1%) -> No NTC_RAW. (Retorno 2 fios via LGND. Grounded-body assume offset). No NTC_RAW -> R 2.2k -> No A1_FILT. Cap 1uF X7R p/ LGND + Clamps SD103. No A1_FILT -> Canal A1.
+
 BAIRRO 5: Monitoramento Interno e Alternador (Resistores 1%)
  * A2 (Monitor 5V_A): 5V_A -> R 10k(1%) -> No A2_DIV -> R 10k(1%) -> LGND. Cap 100nF p/ LGND. R 1k p/ Canal A2.
  * A3 (Alternador): VBAT_PROT -> R 33k(1%) -> No A3_DIV -> R 4.7k(1%) -> LGND. Cap 100nF p/ LGND. Clamps SD103 no A3_DIV (Diodo Alto no 5V_A). R 1k do No A3_DIV p/ Canal A3.
+
 BAIRRO 6: Combustivel (Buffer MCP6002 - Conexoes Explicitas)
  * Pino 8 no 3.3V_ESP. Pino 4 no LGND/AGND. Cap 100nF no Pino 8 p/ LGND.
  * Circuito A (Boia/Sensor): Fio da Boia -> R 1M Ohm -> No DIV_A -> Pino 3 (IN+ A). No DIV_A p/ LGND: R 220k + Cap 470nF. Clamps em DIV_A (Referenciados ao 3.3V_ESP e LGND). Malha A: Pino 1 (OUT A) no Pino 2 (IN- A). Pino 1 -> R 100 Ohms -> GPIO 5. Cap 100nF no pino ADC p/ LGND.
  * Circuito B (Feed Original): Fio Positivo de Alimentacao do Relogio no Painel -> R 1M Ohm -> No DIV_B -> Pino 5 (IN+ B). Repetir filtros e clamps de A. Malha B: Pino 7 (OUT B) no Pino 6 (IN- B). Pino 7 -> R 100 Ohms -> GPIO 6. Cap 100nF no pino ADC p/ LGND.
+
 BAIRRO 7: Display e Alertas
  * TFT: Pinos CS(10), MOSI(11), SCK(12), DC(14). RST(21).
  * Backlight (IRLZ44N): GPIO 13 -> R 100 Ohms -> Gate. Gate -> R 100k -> PGND. Source -> PGND. Drain -> Pino BLK. (Se BLK for LED direto, calcular/adicionar Resistor de Potencia em serie).
  * Alertas: 12V Pos-Chave -> R 2.2k -> Pino 1 PC817. Pino 2 -> Sensor (PGND). Pino 3 (Emissor) -> LGND/AGND. Pino 4 (Coletor) -> GPIO + Pull-up 10k p/ 3.3V_ESP.
+   
  * REQUISITOS OBRIGATORIOS DE FIRMWARE (C++)
  * Ratiometria Absoluta (REGRA DE PROTECAO DE CALCULOS):
  * MANDATORIO: O codigo C++ NUNCA deve dividir os valores 'raw' (contagens brutas) de canais com PGA diferente.
