@@ -1,5 +1,3 @@
-User setup - .h
-
 // =============================================================================
 // User_Setup.h — TFT_eSPI
 // Projeto: Telemetria Chevette ESP32-S3
