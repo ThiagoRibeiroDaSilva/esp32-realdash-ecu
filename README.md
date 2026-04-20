@@ -28,7 +28,7 @@ Status: HARDWARE APROVADO P/ BANCADA E ROAD-TEST (ZERO FALHAS CRITICAS)
    -- LGND/AGND (Limpo): Pinos GND do S3, ADS1115, MCP6002, Lado isolado (Pino 5) dos Optos, Pinos GND dos sensores de bloco e GND do LDO/GPS.
  * Ambiente: VETADA a instalacao no cofre. Uso exclusivo em cabine.
  * Filtro Boia (0.34Hz): O circuito de combustivel possui resposta intencionalmente lenta (~3s) para atuar como amortecedor mecanico contra oscilacoes do tanque em curvas.
- * A BATALHA NAVAL 39x59 (TOPOLOGIA FINAL DETALHADA)
+ * A BATALHA NAVAL 28x50 (TOPOLOGIA FINAL DETALHADA)
 
 BAIRRO 1: Front-End 12V
  * +12V -> Fusivel 2A -> No FRONT.
