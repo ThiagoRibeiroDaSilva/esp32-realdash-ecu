@@ -1,7 +1,7 @@
 1. Linha 4 de A a F: É um cabo flexível?
 Não. Quando dizemos "O Nó FRONT é a Linha 4 (A4 a F4). Una todos com solda", significa que você vai pegar um fio de cobre rígido e nu (descascado) ou até mesmo o próprio estanho, e vai preencher esses furos criando uma "trilha" grossa. É como um barramento. Todos esses furos (A4, B4, C4, D4, E4, F4) viram uma coisa só eletricamente.
 2. A diferença entre PONTE e JUMPER:
-• [PONTE]: É quando as coisas estão tão perto que você usa a própria perna do componente para ligar ao vizinho. Você enfia o diodo no C4, dobra a perna dele por baixo da placa até ela encostar no B4, e solda as duas juntas. Não usa fio extra.
+• [PONTE]: É quando as coisas estão tão perto que você usa a própria perna do componente para ligar ao vizinho. Você enfia o diodo no C4, dobra a perna dele por baixo da placa até ela encostar no B4, e solda as duas juntas. Não usa fio extra, apenas aloca o outro componente no furo ao lado e une as pernas.
 • [JUMPER]: É quando as coisas estão longe. Você precisa cortar um pedaço de fio flexível (encapado, para não fechar curto no caminho), descascar as pontas, soldar uma no furo de origem e a outra no furo de destino.
 3. O IRF9540N (TO-220): Gate, Drain e Source:
 Olhe para o componente de frente para você (conseguindo ler as letras escritas no plástico preto), com as três pernas viradas para baixo.
@@ -21,7 +21,7 @@ Assim como o Nó FRONT, o VBAT_PROT (Bateria Protegida) é uma trilha reta que v
 6. O Zener 5.1V no D32 (RPM):
 Ele vai ficar com o Cátodo (listra) no D32 e o Ânodo (liso) no D2 (que é a grande avenida do PGND da Linha 2).
 7. O que é "1N4148 antiparalelo"?
-O optoacoplador tem um LED lá dentro (Pino 1 Anodo, Pino 2 Catodo). Antiparalelo é ligar um diodo ao contrário nesses mesmos pinos para proteger o LED contra energia invertida.
+O optoacoplador tem um LED lá dentro (Pino 1 Anodo, Pino 2 Catodo). Antiparalelo é ligar um diodo ao contrário nesses mesmos pinos para proteger o LED contra energia invertida, fazendo uma PONTE (alocando o diodo nos furos ao lado e conectando as pernas dele com as do octoacoplador).
 • O Pino 1 do optoacoplador recebe a lista (Catodo) do 1N4148.
 • O Pino 2 do optoacoplador recebe o lado liso (Anodo) do 1N4148.
 8. Diodos SD103 Alto e Baixo:
