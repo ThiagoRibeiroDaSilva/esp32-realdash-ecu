@@ -60,6 +60,7 @@ Você precisará comprar esses três itens avulsos no balcão da loja física, p
 [F] MECÂNICA, CHICOTE E CONSUMÍVEIS
  * 1x Placa Perfurada Universal Dupla Face 10x15cm (Grid de 39x59 furos).
  * 1x Caixa Patola PB-114 (ou equivalente).
+ * 1x Keystone RJ45 fêmea (cat5 ou cat6).
  * 1x Kit Conector Automotivo 16 Vias (Contendo OBRIGATORIAMENTE: 1x Carcaça Macho, 1x Carcaça Fêmea, 32x Terminais de crimpagem, 32x Borrachas/Vedações).
  * 1x Porta-fusível aéreo c/ Fusível Lâmina 2A.
  * 4x Espaçadores de Nylon M3 MACHO-FÊMEA (10mm corpo + 6mm rosca).
