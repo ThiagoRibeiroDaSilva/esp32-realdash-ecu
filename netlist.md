@@ -71,7 +71,7 @@ PASSO 4: I2C (ADS1115 E BSS138)
 • BSS138: Col AA (30 a 38). Lado HV (AA30) [JUMPER p/ 5V_A (AA46)]. Lado LV (AA35) [JUMPER p/ 3.3V_ESP (AA44)]. HV1 e HV2 [PONTES para SCL e SDA do ADS]. LV1 e LV2 [JUMPERS flexíveis p/ ESP GPIO9(Z34) e GPIO8(Z31)]. Lados GND da placa BSS para LGND (AA48).
 PASSO 5: RPM (MURALHA E OPTOACOPLADOR)
 • Muralha 6.8k: Fio do motor no A20. R1(A20 e A23). Dobre perna do A23 até encostar no B23. R2(B23 e B26). Dobre B26 p/ C26. R3(C26 e C29). Dobre C29 p/ D29. R4(D29 e D32). D32 é o sinal filtrado.
-• Zener 5.1V: [LISTRA] no D32. [LISO] no D2 (PGND).
+• Zener 5.1V: [LISTRA] no D32. [LISO] no D30. Em seguida, pegue um pedaço de fio flexível (JUMPER), solde uma ponta no D30 e a outra ponta lá embaixo na avenida PGND, no D2.
 • R 330 Ohms: Furos D32 e F32.
 • H11L1M (Opto): Pinos 1,2,3 na Col G. Pinos 6,5,4 na Col J.
 • Pino 1 no G32 [PONTE p/ F32]. Pino 2 no G33 [JUMPER p/ PGND (G2)].
