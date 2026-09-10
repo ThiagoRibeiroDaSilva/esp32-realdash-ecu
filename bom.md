@@ -50,7 +50,7 @@ BOM Físico
  * 3x 100 Ohms.
 
 ❌ O que VAI FALTAR (não consta no kit do Aliexpress)
-Você precisará comprar esses três itens avulsos no balcão da loja física, pois o kit não atende seja por valor ou por potência:
+Você precisará comprar esses dois itens avulsos no balcão da loja física, pois o kit não atende seja por valor ou por potência:
 1. A Falta de Valor:
 • 1x 33k Ohms (1% de tolerância - 1/4W): Se você olhar a tabela do kit, ele simplesmente pula do 20k direto para o 47k. Ele não possui o valor de 33k, que é vital para o divisor de tensão que vai ler o Alternador (Bairro 5).
 2. A Falta de Potência (O Risco Físico):
