@@ -75,6 +75,13 @@ PASSO 3: MÓDULOS DE ENERGIA E ESP32
 • LM2596: IN+ no L13 (Trilha VBAT). IN- no L2 (PGND). OUT- no N2 (PGND). OUT+ no A16.
 • Nó 5V_D: Crie uma trilha de estanho unindo do A16 ao V16.
 • Filtro do 5V_A: R 10 Ohms do O16 (5V_D) ao O46 (5V_A). Cap 47µF (Positivo no P46, Negativo no LGND P48). Cap 100nF no Q46 p/ LGND (Q48).
+• LDO MCP1700 (3.3V GPS): Pinos na Coluna U (Linhas 40,41,42).
+• Pino 1 (GND - U40) [JUMPER flexível p/ LGND (U48)].
+• Pino 2 (VIN - U41) [JUMPER flexível p/ 5V_D (U16)].
+• Pino 3 (VOUT - U42) será o nó 3.3V_GPS.
+• Cap 1uF (IN): Perna positiva no U41, perna negativa no U40.
+• Cap 1uF (OUT): Perna positiva no U42, perna negativa no U40.
+• Nó 3.3V_GPS: Crie uma ponte de solda do U42 até o furo V42 para facilitar conexões futuras.
 • ESP32-S3: Pinos da esquerda (3V3 ao 5V) na Col P (P20 a P41). Direita (GND ao TX) na Col Z (Z20 a Z41).
 • [JUMPER] flexível do V16 (5V_D) p/ Pino 5V ESP (P40).
 • [JUMPER] flexível do LGND (P48) p/ Pino GND ESP (P41).
@@ -97,7 +104,7 @@ PASSO 5: RPM (MURALHA E OPTOACOPLADOR)
 
 PASSO 6: SENSORES DE BLOCO (A0 e A1)
 • A0 (Óleo): Fio Sinal entra no A36. R 2.2k do A36 p/ B36 (Nó Sinal Filtrado).
-• Diodo SD103 Alto: [LISO] no C36 [PONTE p/ B36]. [LISTRA] no C46 (Trilha 5V_A).
+• Diodo SD103 Alto: [LISO] no C36 [PONTE p/ B36]. [LISTRA] no C16 (JUMPER flexível p/ Trilha 5V_D).
 • Diodo SD103 Baixo: [LISTRA] no D36 [PONTE p/ B36]. [LISO] no D48 (Trilha LGND).
 • Cap 100nF do B36 p/ B48 (LGND).
 • [JUMPER] flexível do B36 p/ Pino A0 do ADS (AB36).
@@ -108,7 +115,7 @@ PASSO 6: SENSORES DE BLOCO (A0 e A1)
 • [JUMPER] flexível do F40 p/ Pino A1 do ADS (AB37).
 
 PASSO 7: DIVISORES INTERNOS (A2 e A3)
-• A2 (Monitor do 5V_A): R 10k (1%) da trilha 5V_A (I46) p/ I40 (Nó Meio). R 10k (1%) do I40 p/ LGND (I48).
+• A2 (Monitor do 5V_D): R 10k (1%) da trilha 5V_D (I16) p/ I40 (Nó Meio). R 10k (1%) do I40 p/ LGND (I48).
 • Cap 100nF do I40 p/ J48 (LGND). R 1k do I40 p/ J40. [JUMPER] flexível de J40 p/ A2 do ADS (AB38).
 • A3 (Monitor Alternador): [JUMPER] da Trilha VBAT (B13) p/ furo K40. R 33k (1%) do K40 p/ K37 (Nó Meio). R 4.7k (1%) do K37 p/ LGND (K48).
 • Diodo SD103 Alto: [LISO] no L37 [PONTE p/ K37]. [LISTRA] no L46 (5V_A).
@@ -144,7 +151,7 @@ PASSO 9.1: SENSOR DE NÍVEL DO RADIADOR (XKC-Y25-NPN + PC817 IC3)
 PASSO 10: TELA E GPS (KEYSTONE)
 • Backlight Tela: IRLZ44N (Col R,S,T). Source (T5) [JUMPER p/ PGND (T2)]. R 100k do Gate (R5) p/ PGND (R2). R 100 Ohms do R5 p/ R8. [JUMPER] flexível do R8 p/ GPIO13 ESP (P38). Drain (S5) no Fio BLK da Tela.
 • Pads do GPS (P/ soldar o chicote do RJ45):
-• P18: Fio de energia pro RJ45 (Pino 1/2). [PONTE p/ 3.3V_ESP (P44)].
+• P18: Fio de energia pro RJ45 (Pino 1/2). [JUMPER flexível p/ Nó 3.3V_GPS (V42)].
 • Q18: Fio GND pro RJ45 (Pino 3/6). [PONTE p/ LGND (Q48)].
 • R18: Fio TX pro RJ45 (Pino 4). [JUMPER p/ GPIO17 ESP (P29)].
 • S18: Fio RX pro RJ45 (Pino 5). [JUMPER p/ GPIO18 ESP (P30)].
