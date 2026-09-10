@@ -79,4 +79,3 @@ BAIRRO 7: Display e Alertas
  * Zona Morta (12.8V a 13.5V): O firmware deve MANTER O ULTIMO ESTADO VALIDO registrado ate que um novo limiar seja cruzado.
  * Validacao Bancada / Road-Test:
  * RPM: Instrumentar com osciloscopio o Flyback para calibrar rejeicao em C++.
- * Oleo: Verificar se o consumo do sensor ativo nao rebaixa o barramento 5V_A para menos de 4.75V (Limite aceitavel para garantir 5% de margem no ratiometrico do A2).
