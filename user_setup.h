@@ -31,7 +31,7 @@
 #define TFT_DC    14   // GPIO 14 — Data / Command
 #define TFT_RST   21   // GPIO 21 — Reset
 #define TFT_MISO  -1   // CRÍTICO: desabilita leitura SPI
-#define TFT_BL    13   // GPIO 13 — Backlight (referência do projeto)
+// #define TFT_BL    13    // GPIO 13 — Backlight (Desativado: O Firmware gerencia via PWM)
 
 // -----------------------------------------------------------------------------
 /* Frequências SPI */
