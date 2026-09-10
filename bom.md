@@ -34,7 +34,7 @@ BOM Físico
 
 [E] RESISTORES (1/4W PTH comum, EXCETO onde anotado)
  * 4x 6.8k Ohms / 0.5W (OBRIGATÓRIO: Filme Metálico / Metal Film).
- * 1x 10 Ohms / 0.5W.
+ * 1x 10 Ohms.
  * 3x 1M Ohm.
  * 2x 220k Ohms.
  * 2x 100k Ohms.
