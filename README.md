@@ -3,7 +3,7 @@
  * A Fonte do Canal B (Omissão Documental): eu detalhei o Circuito A (Fio da Boia), mas disse apenas "repetir para o Circuito B", sem dizer de onde vinha o sinal B. Adicionada a instrução explícita de que o sinal B vem da alimentação do relógio original do painel.
  * O Limbo do Alternador (Zona Morta): Se a voltagem ficar presa entre 12.8V e 13.5V, o que a tela mostra? Vamos documentar a regra de histerese do firmware: "Manter o último estado válido até que um novo limiar seja cruzado".
  * A Matemática do Óleo (Risco de Firmware): Se o código dividir os números "brutos" do ADS1115 (onde o canal do óleo tem um tamanho de "degrau" diferente do canal de referência), a conta dá errado. Regra cravada: O C++ tem que converter os sinais para Volts antes de fazer qualquer divisão.
- * O Critério de Bancada do Óleo: Adicionada a regra clara: Se a queda de tensão no resistor de 10 Ohms baixar o barramento 5V_A para menos de 4.75V, o sensor puxa corrente demais e deve voltar para o 5V_D.
+ * O Critério do Sensor de Óleo: O sensor foi movido definitivamente para o barramento 5V_D. Isso impede que o consumo ativo de corrente do transdutor cause queda de tensão (Lei de Ohm) no filtro RC de 10 Ohms, o que corromperia a leitura base do ADC e flutuaria as medições ratiométricas.
  * A Lentidão da Boia (0.34Hz): O filtro analógico leva 3 segundos para atualizar. Isso foi documentado não como defeito, mas como recurso desejado para o ponteiro não ficar dançando nas curvas.
 Aqui está a V21.0 (The Software Bridge). É o documento final já contendo as diretrizes estritas para a programação.
 
@@ -39,7 +39,7 @@ BAIRRO 1: Front-End 12V
 
 BAIRRO 2: A Distribuicao de Energia
  * 5V_D (Carga Pesada): Saida LM2596. Alimenta ESP32(Vin) e Backlight.
- * 5V_A (Analogico Limpo): Saida 5V_D -> R 10 Ohms -> No 5V_A. Cap 47uF + Cap 100nF p/ LGND/AGND. (Alimenta EXCLUSIVAMENTE Sensor de Oleo, ADS1115, Lado HV do BSS138, Pull-up do NTC e Divisores).
+ * 5V_A (Analogico Limpo): Saida 5V_D -> R 10 Ohms -> No 5V_A. Cap 47uF + Cap 100nF p/ LGND/AGND. (Alimenta EXCLUSIVAMENTE ADS1115, Lado HV do BSS138 e Pull-up do NTC).
  * 3.3V_GPS (LDO): MCP1700 alimentado pelo 5V_D. (Obrigatorio: Cap 1uF IN p/ LGND, Cap 1uF OUT p/ LGND). Alimenta apenas o GPS.
  * 3.3V_ESP: Pino 3.3V nativo do DevKit. Alimenta: Lado LV do BSS138, Pull-ups Logicos e VDD do MCP6002.
 
@@ -51,11 +51,11 @@ BAIRRO 3: Condicionamento de RPM (Captura por Flyback)
  * Lado ESP: Pino 6(VCC) em 3.3V_ESP + Cap 100nF p/ LGND. Pino 5(GND) no LGND/AGND. Pino 4(VO) -> GPIO 4 + Pull-up 4.7k p/ 3.3V_ESP.
 
 BAIRRO 4: Analogicos de Bloco
- * A0 (Oleo): VCC no 5V_A. GND DEVE retornar via fio dedicado ao LGND/AGND. Sinal -> R 2.2k -> No A0_FILT. Diodo Alto (Anodo No, Catodo 5V_A). Diodo Baixo (Anodo LGND, Catodo No). Cap 100nF p/ LGND. No A0_FILT -> Canal A0.
+ * A0 (Oleo): VCC no 5V_D. GND DEVE retornar via fio dedicado ao LGND/AGND. Sinal -> R 2.2k -> No A0_FILT. Diodo Alto (Anodo No, Catodo 5V_D). Diodo Baixo (Anodo LGND, Catodo No). Cap 100nF p/ LGND. No A0_FILT -> Canal A0.
  * A1 (Agua NTC): 5V_A -> R 2.2k (1%) -> No NTC_RAW. (Retorno 2 fios via LGND. Grounded-body assume offset). No NTC_RAW -> R 2.2k -> No A1_FILT. Cap 1uF X7R p/ LGND + Clamps SD103. No A1_FILT -> Canal A1.
 
 BAIRRO 5: Monitoramento Interno e Alternador (Resistores 1%)
- * A2 (Monitor 5V_A): 5V_A -> R 10k(1%) -> No A2_DIV -> R 10k(1%) -> LGND. Cap 100nF p/ LGND. R 1k p/ Canal A2.
+ * A2 (Monitor 5V_D): 5V_D -> R 10k(1%) -> No A2_DIV -> R 10k(1%) -> LGND. Cap 100nF p/ LGND. R 1k p/ Canal A2.
  * A3 (Alternador): VBAT_PROT -> R 33k(1%) -> No A3_DIV -> R 4.7k(1%) -> LGND. Cap 100nF p/ LGND. Clamps SD103 no A3_DIV (Diodo Alto no 5V_A). R 1k do No A3_DIV p/ Canal A3.
 
 BAIRRO 6: Combustivel (Buffer MCP6002 - Conexoes Explicitas)
