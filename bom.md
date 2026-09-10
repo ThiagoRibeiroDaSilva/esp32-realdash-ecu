@@ -55,7 +55,6 @@ Você precisará comprar esses três itens avulsos no balcão da loja física, p
 • 1x 33k Ohms (1% de tolerância - 1/4W): Se você olhar a tabela do kit, ele simplesmente pula do 20k direto para o 47k. Ele não possui o valor de 33k, que é vital para o divisor de tensão que vai ler o Alternador (Bairro 5).
 2. A Falta de Potência (O Risco Físico):
 • 4x 6.8k Ohms / 0.5W (Filme Metálico): O kit até tem o 6.8k, mas ele é de 1/4W (0.25W). O dossiê exige 0.5W (meio watt). Esses 4 resistores vão no Bairro 3 para segurar o "coice" de alta tensão da bobina de ignição. Se você usar os de 1/4W do kit, eles vão superaquecer e queimar com o motor rodando.
-• 1x 10 Ohms / 0.5W: O kit também tem o 10R, mas novamente, é de 1/4W. Esse resistor é a "porta de entrada" da alimentação do Sensor de Óleo (Bairro 2). Como toda a corrente analógica passa por ele, ele precisa dissipar mais calor (0.5W), senão ele abre o bico.
 
 [F] MECÂNICA, CHICOTE E CONSUMÍVEIS
  * 1x Placa Perfurada Universal Dupla Face 10x15cm (Grid de 39x59 furos).
